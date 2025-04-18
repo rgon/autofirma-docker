@@ -1,25 +1,21 @@
-# FROM ubuntu:latest as base
-FROM jlesage/firefox
+FROM debian:bookworm-slim AS autofirma_dl
 
-######################################################################
-# AutoFirma Debian package.
+RUN apt-get update && apt-get -y install curl unzip
+RUN curl https://estaticos.redsara.es/comunes/autofirma/currentversion/AutoFirma_Linux_Debian.zip --output /tmp/autofirma.zip
+RUN unzip /tmp/autofirma.zip AutoFirma_*.deb -d /tmp
 
-# FROM base as autofirma-deb
-
-RUN apk add curl unzip
-# RUN apt install -y ca-certificates wget unzip curl
-# RUN curl https://estaticos.redsara.es/comunes/autofirma/currentversion/AutoFirma_Linux_Debian.zip --output /tmp/autofirma.zip
-# RUN unzip /tmp/autofirma.zip AutoFirma_*.deb -d /tmp
-
-######################################################################
-# Firefox
-
-# FROM jlesage/firefox
+FROM linuxserver/firefox:latest
 
 # Install AutoFirma.
-RUN apk add dpkg nss openjdk17
-# COPY --from=autofirma-deb /tmp/AutoFirma_*.deb /tmp/
+RUN apt-get update && apt-get -y install openjdk-21-jdk libnss3-tools
+
+# Copy AutoFirma from the previous stage.
+COPY --from=autofirma_dl /tmp/AutoFirma_*.deb /tmp/
 # Install deb even though we're on Alpine linux!
-# RUN dpkg -i /tmp/AutoFirma_*.deb
+RUN dpkg -i /tmp/AutoFirma_*.deb
+
+# Fix ugly java font rendering
+RUN echo "export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'" >> /etc/profile.d/jre.sh
+RUN echo "export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'" >> .bashrc
 
 VOLUME /config/certificates
