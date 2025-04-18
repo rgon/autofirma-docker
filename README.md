@@ -22,3 +22,11 @@ It can also be used to sign documents from within an organization without sharin
 # Requirements
 + `docker` https://docs.docker.com/engine/install/
 + `docker-compose-plugin`
+
+---
+# TODO:
++ [ ] Pre-add exception for Autofirma root certificate, since it attempts a connection to a local wss socket, causing errors in some (not all!) signing websites! See ctt-gob-es/clienteafirma/issues/167
+This is one of the websites that requires it: https://sede.carm.es/cryptoApplet/ayuda/probarautofirma.html
++ [ ] Auto-setup certificates both in autofirma and in firefox (2 at once in the system store). Add CLI.
++ [ ] Change favicon
++ [ ] custom home screen, custom bookmarks
