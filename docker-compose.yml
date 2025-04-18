@@ -8,5 +8,5 @@ services:
       - "/docker/appdata/firefox:/config:rw"
       - "./certificates:/config/certificates:ro"
     environment:
-      FIREFOX_CLI: https://sede.carm.es/cryptoApplet/ayuda/probarautofirma.html
+      FIREFOX_CLI: https://www.sededgsfp.gob.es/es/Paginas/TestAutofirma.aspx
       _JAVA_OPTIONS: -Dawt.useSystemAAFontSettings=gasp

@@ -18,4 +18,8 @@ RUN dpkg -i /tmp/AutoFirma_*.deb
 RUN echo "export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'" >> /etc/profile.d/jre.sh
 RUN echo "export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'" >> .bashrc
 
+# Autofirma configuration
+COPY ./scripts/configure_autofirma.sh /usr/local/bin/configure_autofirma.sh
+RUN /usr/local/bin/configure_autofirma.sh
+
 VOLUME /config/certificates
