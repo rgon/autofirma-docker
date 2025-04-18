@@ -1,0 +1,1 @@
+Any certificates in this directory will be made available in `$HOME/certificates` inside the virtual environment.

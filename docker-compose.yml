@@ -1,0 +1,11 @@
+version: '3'
+services:
+  firefox:
+    build: .
+    ports:
+      - "5800:5800"
+    volumes:
+      - "/docker/appdata/firefox:/config:rw"
+      - "./certificates:/config/certificates:ro"
+    environment:
+      FF_OPEN_URL: https://sede.carm.es/cryptoApplet/ayuda/probarautofirma.html
