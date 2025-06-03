@@ -7,6 +7,7 @@ services:
     volumes:
       - "/docker/appdata/firefox:/config:rw"
       - "./certificates:/config/certificates:ro"
+      - "./config:/config/.config/openbox/:rw"
     environment:
       FIREFOX_CLI: https://www.sededgsfp.gob.es/es/Paginas/TestAutofirma.aspx
       _JAVA_OPTIONS: -Dawt.useSystemAAFontSettings=gasp
