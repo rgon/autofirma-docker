@@ -7,7 +7,7 @@ RUN unzip /tmp/autofirma.zip AutoFirma_*.deb -d /tmp
 FROM linuxserver/firefox:latest
 
 # Install AutoFirma.
-RUN apt-get update && apt-get -y install openjdk-21-jdk libnss3-tools
+RUN apt-get update && apt-get -y install openjdk-11-jdk libnss3-tools
 
 # Copy AutoFirma from the previous stage.
 COPY --from=autofirma_dl /tmp/AutoFirma_*.deb /tmp/
