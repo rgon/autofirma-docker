@@ -1,0 +1,1 @@
+Any document in this directory will be made available in `$HOME/documents` inside the virtual environment, for signing them.
