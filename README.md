@@ -1,10 +1,13 @@
 # About
-This container runs a remote instance of firefox with autofirma installed in a sandboxed environment. It can be accessed by any web browser, since it runs a remote desktop server.
+This container runs a remote sandboxed environment with firefox and autofirma. It can be accessed with any web browser.
 
 # Usage
 + `./run.sh`
 + Access from any web browser at http://localhost:5800
+
 + If you need any certificates inside the autofirma environment, copy them inside the `certificates/` folder. They'll be available inside the container in `/config/certificates/` (`Home/certificates` in the integrated file picker).
++ For your convenience, you may use the `documents/` folder to copy any files to sign & retrieve the signed result.
++ If you need to run any application inside the virtual environment (like running autofirma with CLI arguments), you may access the container's shell using `./shell.sh`. Any GUI window that may spawn from your commands will also appear inside the remote desktop's view.
 
 ![](doc/image.png)
 # Motivation
