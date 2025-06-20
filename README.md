@@ -9,7 +9,7 @@ This container runs a remote sandboxed environment with firefox and autofirma. I
 + For your convenience, you may use the `documents/` folder to copy any files to sign & retrieve the signed result.
 + If you need to run any application inside the virtual environment (like running autofirma with CLI arguments), you may access the container's shell using `./shell.sh`. Any GUI window that may spawn from your commands will also appear inside the remote desktop's view.
 
-![](doc/image.png)
+![](docs/image.png)
 # Motivation
 Autofirma is required by many Spanish government websites for online operations, but its design raises several security concerns:
 + It has a messy and unstructured and hard-to-audit code structure with over 50 classes in the root directory.
