@@ -1,8 +1,8 @@
 FROM debian:bookworm-slim AS autofirma_dl
 
 RUN apt-get update && apt-get -y install curl unzip
-RUN curl https://estaticos.redsara.es/comunes/autofirma/currentversion/AutoFirma_Linux_Debian.zip --output /tmp/autofirma.zip
-RUN unzip /tmp/autofirma.zip AutoFirma_*.deb -d /tmp
+RUN curl https://firmaelectronica.gob.es/content/dam/firmaelectronica/descargas-software/autofirma19/Autofirma_Linux_Debian.zip --output /tmp/autofirma.zip
+RUN unzip /tmp/autofirma.zip autofirma_*.deb -d /tmp
 
 FROM linuxserver/firefox:latest
 
@@ -10,9 +10,9 @@ FROM linuxserver/firefox:latest
 RUN apt-get update && apt-get -y install openjdk-11-jdk libnss3-tools
 
 # Copy AutoFirma from the previous stage.
-COPY --from=autofirma_dl /tmp/AutoFirma_*.deb /tmp/
+COPY --from=autofirma_dl /tmp/autofirma_*.deb /tmp/
 # Install deb even though we're on Alpine linux!
-RUN dpkg -i /tmp/AutoFirma_*.deb
+RUN dpkg -i /tmp/autofirma_*.deb
 
 # Fix ugly java font rendering
 RUN echo "export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'" >> /etc/profile.d/jre.sh
